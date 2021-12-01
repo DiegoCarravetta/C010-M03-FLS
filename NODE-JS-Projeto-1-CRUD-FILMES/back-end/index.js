@@ -8,37 +8,29 @@ const app = express();
 app.use(express.json());
 
 // Iniciando meus dados fixos manualmente (CRUD memória)
-const blueVagas = [
+const filmes = [
     {
-        id: 1,
-        empresa: "Blue",
-        salario: 3000,
-        oportunidade: "Front-End Jr",
-        tipo: "estágio"
+        nome: "Venom: Tempo de Carnificina",
+        imagem: "https://br.web.img2.acsta.net/pictures/21/05/10/15/32/2425639.png",
+        genero: "Ação",
+        nota: "",
+        assistido: false
     },
 
     {
-        id: 2,
-        empresa: "Google",
-        salario: 10000,
-        oportunidade: "Front-End Jr",
-        tipo: "CLT"
+        nome: "Shang-Chi e a Lenda dos Dez Anéis",
+        imagem: "https://br.web.img3.acsta.net/pictures/21/08/05/20/13/2818037.jpg",
+        genero: "Ação",
+        nota: "",
+        assistido: false
     },
 
     {
-        id: 3,
-        empresa: "Facebook",
-        salario: 20000,
-        oportunidade: "Full Stack Sr",
-        tipo: "PJ"
-    },
-    
-    {
-        id: 4,
-        empresa: "Amazon",
-        salario: 15000,
-        oportunidade: "Full Stack Pl",
-        tipo: "CLT"
+        nome: "Duna",
+        imagem: "https://br.web.img3.acsta.net/c_310_420/pictures/21/09/29/20/10/5897145.jpg",
+        genero: "Ação",
+        nota: "",
+        assistido: false
     }
 ]
 
@@ -53,23 +45,23 @@ app.all('/*', (req, res, next) => {
 //REQ (REQUEST/REQUISICAO) - VEM DO CLIENTE
 //RES (RESPONSE/RESPOSTA) - VOLTA PARA O CLIENTE
 app.get('/', (req, res) => {
-    res.send('Olá Blumers!');
+    res.send("Meus filmes favoritos");
 });
 
 // Crio a rota onde a regra de negócio retornar a lista de vagas
-app.get('/vagas', (req, res) => {
-    res.send(blueVagas);
+app.get('/filmes', (req, res) => {
+    res.send(filmes);
 })
 
 // Crio uma rota que retorna para o cliente uma única vaga de acordo com o seu id, procurando na lista uma vaga que contenha o id igual ao que eu recebi via parametro
-app.get('/vagas/:id', (req, res) => {
+app.get('/filmes/:id', (req, res) => {
     const idParam = req.params.id; //acessar o id via a requisicao
-    const vagaEcontrada = blueVagas.find(vaga => vaga.id == idParam); // busca o item na lista de acordo com o seu id
-    res.send(vagaEcontrada); // envia para o front-end a vaga encontrada
+    const filmeEncontrado = filmes.find(filme => filme.nome == idParam); // busca o item na lista de acordo com o seu id
+    res.send(filmeEncontrado); // envia para o front-end a vaga encontrada
 })
 
 // Preciso definir a porta que o meu backend irá executar e inicializar o servidor com ela
-const port = 3000;
+const port = 3001;
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 })
