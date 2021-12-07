@@ -1,3 +1,4 @@
+// salvar a url do backend em uma variavel para ser ultiliza depois na hora da chamada da api
 const apiUrl = "http://localhost:3000";
 let modoEdicao = false;
 let idEdicao = 0;
@@ -5,7 +6,7 @@ let idEdicao = 0;
 // estou mapeando o elemento lista (<table></table>) do html.
 const lista = document.getElementById("lista");
 
-// crio uma funcao onde é possivel realizar uma requisicao [GET] para a api
+// crio uma funcao onde é possivel realizar uma requisicao [GET] para a api que retorna uma lista de vagas
 const getVagas = async () => {
 
   // FETCH - É usado para se comunicar via requisicao http (GET, POST, PUT, PATCH, DELETE);
@@ -21,7 +22,8 @@ const getVagas = async () => {
   // })
   const response = await fetch(`${apiUrl}/vagas`);
   const vagas = await response.json();
-
+  
+  // itera a lista e para cada objeto ele pode fazer alguma coisa
   vagas.map((vaga) => {
     console.log(vaga.empresa);
     lista.insertAdjacentHTML(

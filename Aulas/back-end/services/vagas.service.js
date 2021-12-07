@@ -77,6 +77,9 @@ const putVaga = (idParam, vagaEdit) => {
 }
 
 const deleteVaga = (idParam) => {
+    if(!idParam) {
+        return
+    }
     const index = blueVagas.findIndex((vaga) => vaga.id == idParam)
     // startnumber = qual a posicao que deve ser iniciada a exclusao 
     // deleteCount = quantidade de items para ser excluido
